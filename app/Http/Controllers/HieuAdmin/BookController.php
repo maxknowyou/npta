@@ -36,14 +36,14 @@ class BookController extends Controller
     }
     public function PrepareEdit(Request $request)
     {
-        $book = Book::where('id', $request->input('id'))->where('active',1)->first();
+        $books = Book::where('id', $request->input('id'))->where('active',1)->first();
         $gob = GOB::where('bookid',$request->input('id'))->where('active',1)->get();
         $data = [];
         foreach ($gob as $genre) {
             array_push($data,$genre->genreid);
         }
         $json_data = array(
-            "book"   => $book,  
+            "book"   => $books,  
             "gob"    => $data,  
             );
         echo json_encode($json_data);
