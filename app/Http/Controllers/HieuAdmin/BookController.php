@@ -24,10 +24,7 @@ class BookController extends Controller
         $data = [];
         foreach ($posts as $post) {
             $data2 = [];
-            
             array_push($data2, $count1++, $post->name,$post->author,$post->bookshelves,$post->total,$post->active,$post->id);
-            
-
             array_push($data,$data2);
         }
         echo json_encode($data);
@@ -48,7 +45,6 @@ class BookController extends Controller
         $json_data = array(
             "book"   => $book,  
             "gob"    => $data,  
-           
             );
         echo json_encode($json_data);
     }
@@ -89,15 +85,15 @@ class BookController extends Controller
     }
     public function Delete(Request $request)
     {
-        $account = Book::where('id', $request->input('id'))->first();
-        $account->active = 0;
-        $account->save();
+        $book = Book::where('id', $request->input('id'))->first();
+        $book->active = 0;
+        $book->save();
         $mess = true;
         echo json_encode($mess);
     }
     public function AddNew(Request $request)
     {
-        $account = new Book([
+        $book = new Book([
             'name' => $request->get('name'),
             'bookshelves' => $request->get('shelf'),
             'active' => 1,
@@ -105,8 +101,8 @@ class BookController extends Controller
             'total' => $request->get('total'),
             'description' => $request->get('des'),
         ]);
-        $account->save();
-        $id = $account->id;
+        $book->save();
+        $id = $book->id;
         
         foreach ($request->get('genre') as $genre) {
             $gob = new GOB([
