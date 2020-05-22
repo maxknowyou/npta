@@ -16,18 +16,18 @@
         <div class="title-block">
            
                
-                    <h3  style="font-size: 25px;"> {{__('AllCategories')}}
+                    <h3  style="font-size: 25px;"> Danh sách tài khoản
                     </h3>
-                    <button type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">{{ __('Addnew')}}</button>
+                    <button type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
                     
         </div>
         <table class="table table-bordered" id="posts">
             <thead>
                 <th>{{__('No.')}}</th>
-                <th>{{ __('CategoryName')}}</th>
-                <th>{{ __('Creator')}}</th>
-                <th>{{ __('DateCreated')}}</th>
-                <th>{{ __('DateCreated')}}</th>
+                <th>Tài khoản</th>
+                <th>Email</th>
+                <th>Trạng thái</th>
+                <th>Tùy chọn</th>
             </thead>
             <tbody></tbody>
         </table>
@@ -72,8 +72,8 @@
                         <span>Loại tài khoản</span>
                     </label>
                     <div class="col-sm-8">
-                        <select id="type" class="form-control select2" ui-jp="select2" ui-options="{theme: 'bootstrap'}" style="width:100%">
-                            <option value="1">Người dùng</option>
+                        <select id="role" class="form-control select2" ui-jp="select2" ui-options="{theme: 'bootstrap'}" style="width:100%">
+                            <option value="1">Thủ thư</option>
                             <option value="2">Admin</option>
                         </select>
                     </div>
@@ -183,7 +183,7 @@
                 "bScrollCollapse": true,
                 "bProcessing": true,
                 "oLanguage": {
-                    "sSearch": "Tìm kiếm:",
+                    "sSearch": "...",
                     "sSearchPlaceholder": "User",
                     "sZeroRecords": "Không có dữ liệu phù hợp",
                     "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
@@ -308,15 +308,19 @@
            
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("Add", "StatusManga")',
+                url: '/Account/Add',
                 data: {
-                    'name': $("#name").val(),
+                    _token: "{{csrf_token()}}",
+                    'username': $("#username").val(),
+                    'pwd': $("#pwd").val(),
+                    'email': $("#email").val(),
+                    'role': $("#role").val(),
                    
                 },
                 success: function(result) {
                     if (result.rs == true) {
                         alert(result.mess);
-                        loadEmpGroup();
+                        LoadCategory();
                         $('#AddModal').modal('hide');
                         ResetAddModal();
                     } else {
@@ -330,24 +334,25 @@
       })
     function Delete(id) {
 
-        var r = confirm("Bạn có muốn khóa này?");
+        var r = confirm("Bạn có muốn khóa tài khoản này?");
             if (r == true) {
                     $.ajax({
                         type: 'POST',
-                        url: '@Url.Action("DeleteStatus", "StatusManga")',
+                        url: '/Account/Delete',
                         data: {
+                            _token: "{{csrf_token()}}",
                             'id': id,
                         },
                         success: function(data) {
-                            if (data.rs) {
-                                alert(data.mess);
-                                loadEmpGroup();
+                            if (data == 'true') {
+                                alert("Khóa thành công");
+                                LoadCategory();
                             } else {
-                                alert(data.mess);
+                                alert('Có lỗi đã xảy ra, vui lòng liên hệ admin');
                             }
                         },
                         error: function (error) {
-                            alert(data.mess);
+                            alert('Có lỗi đã xảy ra, vui lòng liên hệ admin');
                         }
                     });
 }
