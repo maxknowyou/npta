@@ -16,7 +16,7 @@
         <div class="title-block">
            
                
-                    <h3  style="font-size: 25px;"> Danh sách tài khoản
+                    <h3  style="font-size: 25px;"> Danh sách sách
                     </h3>
                     <button type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
                     
@@ -186,28 +186,21 @@
 </article>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script>
-    $('.ShowPopup').on('click', function(event) {
-        var button = $(event.relatedTarget);
-        var recipient = button.data('whatever');
-        var modal = $(this);
-        modal.find('.modal-title').text('New message to ' + recipient);
-        modal.find('.modal-body input').val(recipient);
-    })
+    
 
     $(document).ready(function() {
         $('.js-example-basic-multiple').select2();
         $('#genreedit').select2();
-        LoadCategory();
+        LoadListBook();
         LoadGenre();
     });
-    function LoadCategory()
+    function LoadListBook()
     {
         $.ajax({
                 type: 'GET',
                 url: '/Book/Getlist',
                 success: function(result) {
                     initTimeFrameDatatable(JSON.parse(result));
-                   console.log(JSON.parse(result));
                 },
                 error: function(error) {
                     alert("Có lỗi xảy ra, vui lòng thử lại", 1);
@@ -220,7 +213,6 @@
                 type: 'GET',
                 url: '/Book/GetGenre',
                 success: function(result) {
-                   console.log(JSON.parse(result));
                    $.each(JSON.parse(result), function (arrayID, element) {
                         $("#genre").append('<option value='+element.id+'>'+element.name+'</option>');
                         $("#genreedit").append('<option value='+element.id+'>'+element.name+'</option>');
@@ -386,7 +378,7 @@
                 success: function(result) {
                     if (result.rs == true) {
                         alert(result.mess);
-                        LoadCategory();
+                        LoadListBook();
                         $('#AddModal').modal('hide');
                         ResetAddModal();
                     } else {
@@ -412,7 +404,7 @@
                         success: function(data) {
                             if (data == 'true') {
                                 alert("Khóa thành công");
-                                LoadCategory();
+                                LoadListBook();
                             } else {
                                 alert('Có lỗi đã xảy ra, vui lòng liên hệ admin');
                             }

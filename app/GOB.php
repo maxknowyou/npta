@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class GOB extends Model
 {
-    public $table = 'genreofbooks';    
+    public $table = 'genreofbook';    
     protected $guarded = [];
     public $timestamps = false;  
     
