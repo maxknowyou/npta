@@ -16,7 +16,7 @@
         <div class="title-block">
            
                
-                    <h3  style="font-size: 25px;"> Danh sách tài khoản
+                    <h3  style="font-size: 25px;"> Danh sách thể loại
                     </h3>
                     <button type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
                     
@@ -84,25 +84,17 @@
 {{ csrf_field() }}
 </article>
 <script>
-    $('.ShowPopup').on('click', function(event) {
-        var button = $(event.relatedTarget);
-        var recipient = button.data('whatever');
-        var modal = $(this);
-        modal.find('.modal-title').text('New message to ' + recipient);
-        modal.find('.modal-body input').val(recipient);
-    })
-
+    
     $(document).ready(function() {
-        LoadCategory();
+        LoadGenre();
     });
-    function LoadCategory()
+    function LoadGenre()
     {
         $.ajax({
                 type: 'GET',
                 url: '/Genre/Getlist',
                 success: function(result) {
                     initTimeFrameDatatable(JSON.parse(result));
-                   console.log(JSON.parse(result));
                 },
                 error: function(error) {
                     alert("Có lỗi xảy ra, vui lòng thử lại", 1);
@@ -221,7 +213,7 @@
                         alert("Chỉnh sửa thành công");
                         $('#EditModal').modal('hide');
                         ResetEditModal();
-                        LoadCategory();
+                        LoadGenre();
                     } else {
                         alert("Có lỗi xảy ra, vui lòng thử lại");
                     }
@@ -249,7 +241,7 @@
                 success: function(result) {
                     if (result.rs == 'true') {
                         alert("Thêm thành công");
-                        LoadCategory();
+                        LoadGenre();
                         $('#AddModal').modal('hide');
                         ResetAddModal();
                     } else {
@@ -275,7 +267,7 @@
                         success: function(data) {
                             if (data == 'true') {
                                 alert("Khóa thành công");
-                                LoadCategory();
+                                LoadGenre();
                             } else {
                                 alert('Có lỗi đã xảy ra, vui lòng liên hệ admin');
                             }

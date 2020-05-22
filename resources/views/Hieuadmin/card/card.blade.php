@@ -16,7 +16,7 @@
         <div class="title-block">
            
                
-                    <h3  style="font-size: 25px;"> Danh sách tài khoản
+                    <h3  style="font-size: 25px;"> Danh sách thẻ
                     </h3>
                     <button type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
                     
@@ -37,7 +37,7 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Thêm thể loại</h5>
+                <h5 class="modal-title">Thêm thẻ</h5>
             </div>
             <div class="modal-body text-center p-lg">
                 <div class="form-group row">
@@ -127,16 +127,15 @@
     
 
     $(document).ready(function() {
-        LoadCategory();
+        LoadCard();
     });
-    function LoadCategory()
+    function LoadCard()
     {
         $.ajax({
                 type: 'GET',
                 url: '/Card/Getlist',
                 success: function(result) {
                     initTimeFrameDatatable(JSON.parse(result));
-                   console.log(JSON.parse(result));
                 },
                 error: function(error) {
                     alert("Có lỗi xảy ra, vui lòng thử lại", 1);
@@ -257,7 +256,7 @@
                         alert("Chỉnh sửa thành công");
                         $('#EditModal').modal('hide');
                         ResetEditModal();
-                        LoadCategory();
+                        LoadCard();
                     } else {
                         alert("Có lỗi xảy ra, vui lòng thử lại");
                     }
@@ -287,7 +286,7 @@
                 success: function(result) {
                     if (result.rs == 'true') {
                         alert("Thêm thành công");
-                        LoadCategory();
+                        LoadCard();
                         $('#AddModal').modal('hide');
                         ResetAddModal();
                     } else {
@@ -313,7 +312,7 @@
                         success: function(data) {
                             if (data == 'true') {
                                 alert("Khóa thành công");
-                                LoadCategory();
+                                LoadCard();
                             } else {
                                 alert('Có lỗi đã xảy ra, vui lòng liên hệ admin');
                             }
