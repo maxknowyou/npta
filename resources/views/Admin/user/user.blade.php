@@ -35,7 +35,7 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Thêm thể loại</h5>
+                <h5 class="modal-title">Thêm tài khoản</h5>
             </div>
             <div class="modal-body text-center p-lg">
                 <div class="form-group row">
@@ -140,35 +140,28 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" id="SaveEdit">Thêm</button>
+                <button type="button" class="btn btn-primary" id="SaveEdit">Sửa</button>
             </div>
         </div><!-- /.modal-content -->
     </div>
 {{ csrf_field() }}
 </article>
 <script>
-    $('.ShowPopup').on('click', function(event) {
-        var button = $(event.relatedTarget);
-        var recipient = button.data('whatever');
-        var modal = $(this);
-        modal.find('.modal-title').text('New message to ' + recipient);
-        modal.find('.modal-body input').val(recipient);
-    })
+   
 
     $(document).ready(function() {
-        LoadCategory();
+        LoadUser();
     });
-    function LoadCategory()
+    function LoadUser()
     {
         $.ajax({
                 type: 'GET',
-                url: '/GetListCategory',
+                url: '/Getlist',
                 success: function(result) {
                     initTimeFrameDatatable(JSON.parse(result));
-                   console.log(JSON.parse(result));
                 },
                 error: function(error) {
-                    alert("Có lỗi xảy ra, vui lòng thử lại", 1);
+                    Console.log("Something wrong with get data for table user, checkout /Getlist", 1);
                 }
             });
     }
@@ -251,30 +244,57 @@
                  $("#pwdedit").val(result.password);
                  $("#emailedit").val(result.email);
                  $("#roleedit").val(result.role);
-                 
+                },
+                error: function(error) {
+                    Console.log("Something wrong with get data for one user, checkout /Account/PrepareEdit", 1);
                 }
             });
          $('#EditModal').modal('show');
-
     }
     function ResetEditModal() {
         $("#usernameedit").val("");
-                 $("#pwdedit").val("");
-                 $("#emailedit").val("");
+        $("#pwdedit").val("");
+        $("#emailedit").val("");
        
     }
     function ResetAddModal() {
         $("#username").val("");
-                 $("#pwd").val("");
-                 $("#email").val("");
+        $("#pwd").val("");
+        $("#email").val("");
        
     }
-    $("#SaveEdit").on("click", function () {
-         if ($('#nameEdit').val() == "") {
-            alert("Vui lòng nhập tên thể loại");
+    function CheckInputEdit()
+    {
+        if ($('#nameedit').val() == "") {
+            alert("Vui lòng nhập tài khoản");
                 return;
             }
-            
+            if ($('#pwdedit').val() == "") {
+            alert("Vui lòng nhập mật khẩu");
+                return;
+            }
+            if ($('#emailedit').val() == "") {
+            alert("Vui lòng nhập email");
+                return;
+            }
+    }
+    function CheckInputAdd()
+    {
+        if ($('#name').val() == "") {
+            alert("Vui lòng nhập tài khoản");
+                return;
+            }
+            if ($('#pwd').val() == "") {
+            alert("Vui lòng nhập mật khẩu");
+                return;
+            }
+            if ($('#email').val() == "") {
+            alert("Vui lòng nhập email");
+                return;
+            }
+    }
+    $("#SaveEdit").on("click", function () {
+        CheckInputEdit();
             $.ajax({
                 type: 'POST',
                 url: '/Account/Edit',
@@ -292,19 +312,16 @@
                         $('#EditModal').modal('hide');
                         ResetEditModal();
                     } else {
-                        alert("Có lỗi xảy ra, vui lòng thử lại");
+                        alert("Something wrong with edit data for one user, checkout /Account/Edit", 1);
                     }
                 },
                 error: function(error) {
-                    alert("Có lỗi xảy ra, vui lòng thử lại");
+                    alert("Something wrong with edit data for one user, checkout /Account/Edit", 1);
                 }
             });
     })
       $("#SaveAdd").on("click", function () {
-         if ($('#name').val() == "") {
-            alert("Vui lòng nhập tên trạng thái");
-                return;
-            }
+        CheckInputAdd();
            
             $.ajax({
                 type: 'POST',
@@ -315,20 +332,19 @@
                     'pwd': $("#pwd").val(),
                     'email': $("#email").val(),
                     'role': $("#role").val(),
-                   
                 },
                 success: function(result) {
                     if (result.rs == true) {
-                        alert(result.mess);
+                        alert("Thêm thành công");
                         LoadCategory();
                         $('#AddModal').modal('hide');
                         ResetAddModal();
                     } else {
-                        alert(result.mess);
+                        alert("Something wrong with add user, checkout /Account/Add", 1);
                     }
                 },
                 error: function(error) {
-                    ShowAlert("Có lỗi xảy ra, vui lòng thử lại", 1);
+                    alert("Something wrong with add user, checkout /Account/Add", 1);
                 }
             });
       })

@@ -6,17 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Category;
 use App\Account;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-class HelloController extends Controller
+class UserController extends Controller
 {
-    public function getHello()
+    public function getview()
     {
-        return view('admin.hello.hello');
+        return view('admin.user.user');
     }
-    public function getCategory()
+    public function getUser()
     {
         $count1 = 1;
         $posts = Account::get();
@@ -25,8 +24,6 @@ class HelloController extends Controller
             $data2 = [];
             
             array_push($data2, $count1++, $post->username,$post->email,$post->active,$post->id);
-            
-
             array_push($data,$data2);
         }
         echo json_encode($data);
