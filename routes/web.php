@@ -50,3 +50,12 @@ Route::post('/Card/PrepareEdit','Hieuadmin\CardController@PrepareEdit');
 Route::post('/Card/Edit','Hieuadmin\CardController@Edit');
 Route::post('/Card/Delete','Hieuadmin\CardController@Delete');
 Route::post('/Card/Add','Hieuadmin\CardController@AddNew');
+
+//Student
+Route::get('/Student','Hieuadmin\StudentController@getview');
+Route::get('/Student/Getlist','Hieuadmin\StudentController@getlist');
+Route::get('/Student/GetCard','Hieuadmin\StudentController@getcardlist');
+Route::post('/Student/PrepareEdit','Hieuadmin\StudentController@PrepareEdit');
+Route::post('/Student/Edit','Hieuadmin\StudentController@Edit');
+Route::post('/Student/Delete','Hieuadmin\StudentController@Delete');
+Route::post('/Student/Add','Hieuadmin\StudentController@AddNew');
