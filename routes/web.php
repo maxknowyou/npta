@@ -19,12 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 //User
-Route::get('/Account','Admin\UserController@getview');
-Route::get('/Account/Getlist','Admin\UserController@getUser');
-Route::post('/Account/PrepareEdit','Admin\UserController@PrepareEdit');
-Route::post('/Account/Edit','Admin\UserController@Edit');
-Route::post('/Account/Delete','Admin\UserController@Delete');
-Route::post('/Account/Add','Admin\UserController@AddNew');
+Route::get('/Hellowebsite','Admin\HelloController@getHello');
+Route::get('/GetListCategory','Admin\HelloController@getCategory');
+Route::post('/Account/PrepareEdit','Admin\HelloController@PrepareEdit');
+Route::post('/Account/Edit','Admin\HelloController@Edit');
+Route::post('/Account/Delete','Admin\HelloController@Delete');
+Route::post('/Account/Add','Admin\HelloController@AddNew');
 
 //Book
 Route::get('/Book','Hieuadmin\BookController@getview');
@@ -59,6 +59,17 @@ Route::post('/Student/PrepareEdit','Hieuadmin\StudentController@PrepareEdit');
 Route::post('/Student/Edit','Hieuadmin\StudentController@Edit');
 Route::post('/Student/Delete','Hieuadmin\StudentController@Delete');
 Route::post('/Student/Add','Hieuadmin\StudentController@AddNew');
+
+//BorrowList
+Route::get('/BorrowList','Hieuadmin\BorrowController@getview');
+Route::get('/BorrowList/Getlist','Hieuadmin\BorrowController@getlist');
+Route::get('/BorrowList/Getdetail','Hieuadmin\BorrowController@getdetaillist');
+Route::post('/BorrowList/PrepareEdit','Hieuadmin\BorrowController@PrepareEdit');
+Route::post('/BorrowList/Edit','Hieuadmin\BorrowController@Edit');
+Route::post('/BorrowList/Delete','Hieuadmin\BorrowController@Delete');
+Route::post('/BorrowList/Return','Hieuadmin\BorrowController@Return');
+Route::post('/BorrowList/Lost','Hieuadmin\BorrowController@Lost');
+Route::post('/BorrowList/Add','Hieuadmin\BorrowController@AddNew');
 
 //LostList
 Route::get('/LostList','Hieuadmin\LostController@getview');

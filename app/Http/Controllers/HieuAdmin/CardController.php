@@ -23,7 +23,7 @@ class CardController extends Controller
         foreach ($posts as $post) {
             $data2 = [];
             
-            array_push($data2, $count1++, $post->name,$post->totalborrow,$post->validity,$post->active,$post->id);
+            array_push($data2, $count1++, $post->name,$post->totalborrow,$post->validity,$post->valday,$post->active,$post->id);
             
 
             array_push($data,$data2);
@@ -41,6 +41,7 @@ class CardController extends Controller
         $account->name = $request->get('name');
         $account->totalborrow = $request->get('totalborrow');
         $account->validity = $request->get('validity');
+        $account->valday = $request->get('valday');
         $account->save();
         $mess = true;
         echo json_encode($mess);
@@ -59,6 +60,7 @@ class CardController extends Controller
             'name' => $request->get('name'),
             'totalborrow' => $request->get('totalborrow'),
             'validity' => $request->get('validity'),
+            'valday' => $request->get('valday'),
             'active' => 1,
         ]);
         $account->save();
