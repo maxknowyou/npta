@@ -59,3 +59,12 @@ Route::post('/Student/PrepareEdit','Hieuadmin\StudentController@PrepareEdit');
 Route::post('/Student/Edit','Hieuadmin\StudentController@Edit');
 Route::post('/Student/Delete','Hieuadmin\StudentController@Delete');
 Route::post('/Student/Add','Hieuadmin\StudentController@AddNew');
+
+//LostList
+Route::get('/LostList','Hieuadmin\LostController@getview');
+Route::get('/LostList/Getlist','Hieuadmin\LostController@getlist');
+Route::get('/LostList/GetCard','Hieuadmin\LostController@getcardlist');
+Route::post('/LostList/PrepareEdit','Hieuadmin\LostController@PrepareEdit');
+Route::post('/LostList/Edit','Hieuadmin\LostController@Edit');
+Route::post('/LostList/Delete','Hieuadmin\LostController@Delete');
+Route::post('/LostList/Add','Hieuadmin\LostController@AddNew');
