@@ -297,7 +297,6 @@
              },
              success: function (results) {
                  let result = JSON.parse(results);
-                 console.log(result);
                  $("#id").val(result.book.id);
                  $("#nameedit").val(result.book.name);
                  $("#shelfedit").val(result.book.bookshelves);
@@ -305,7 +304,6 @@
                  $("#totaledit").val(result.book.total);
                  $("#desedit").val(result.book.description);
                  $("#genreedit").val(result.gob).change();
-                console.log(result.gob);
                 }
             });
          $('#EditModal').modal('show');
@@ -344,9 +342,12 @@
                     'des':$("#desedit").val(),
                 },
                 success: function(result) {
+                   
                     if (result == 'true') {
+                        LoadListBook();
                         alert("Chỉnh sửa thành công");
                         $('#EditModal').modal('hide');
+                        
                         ResetEditModal();
                     } else {
                         alert("Có lỗi xảy ra, vui lòng thử lại");

@@ -201,7 +201,7 @@
             
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" id="SaveEdit">Thêm</button>
+                <button type="button" class="btn btn-primary" id="SaveEdit">Sửa</button>
             </div>
         </div><!-- /.modal-content -->
     </div>
@@ -407,7 +407,8 @@
                 processData: false,
                 dataType:'JSON',
                 success: function(result) {
-                    if (result == 'true') {
+                    console.log(typeof(result));
+                    if (result == true) {
                         alert("Chỉnh sửa thành công");
                         $('#EditModal').modal('hide');
                         ResetEditModal();
@@ -441,7 +442,8 @@
                     'end': $("#end").val(),
                 },
                 success: function(result) {
-                    if (result.rs == 'true') {
+                    console.log(result);
+                    if (result == 'true') {
                         alert("Thêm thành công");
                         LoadCategory();
                         $('#AddModal').modal('hide');

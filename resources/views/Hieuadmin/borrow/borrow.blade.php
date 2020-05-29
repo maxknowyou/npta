@@ -16,7 +16,7 @@
         <div class="title-block">
            
                
-                    <h3  style="font-size: 25px;"> Danh sách tài khoản
+                    <h3  style="font-size: 25px;"> Danh sách mượn
                     </h3>
                     <button type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
                     
@@ -175,7 +175,7 @@
             
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" id="SaveEdit">Thêm</button>
+                <button type="button" class="btn btn-primary" id="SaveEdit">Sửa</button>
             </div>
         </div><!-- /.modal-content -->
     </div>

@@ -144,7 +144,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" id="SaveEdit">Thêm</button>
+                <button type="button" class="btn btn-primary" id="SaveEdit">Sửa</button>
             </div>
         </div><!-- /.modal-content -->
     </div>
@@ -354,7 +354,7 @@
                    
                 },
                 success: function(result) {
-                    if (result.rs == 'true') {
+                    if (result == 'true') {
                         alert("Thêm thành công");
                         LoadCategory();
                         $('#AddModal').modal('hide');
