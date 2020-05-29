@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
 {
-    public $table = 'user';    
+    public $table = 'users';    
     protected $guarded = [];
     public $timestamps = false;  
     

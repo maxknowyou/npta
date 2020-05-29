@@ -23,7 +23,7 @@ class UserController extends Controller
         foreach ($posts as $post) {
             $data2 = [];
             
-            array_push($data2, $count1++, $post->username,$post->email,$post->active,$post->id);
+            array_push($data2, $count1++, $post->name,$post->email,$post->active,$post->id);
             array_push($data,$data2);
         }
         echo json_encode($data);
@@ -35,9 +35,9 @@ class UserController extends Controller
     }
     public function Edit(Request $request)
     {
-        $account = Account::where('id', $request->input('id'))->first();
-        $account->username = $request->get('username');
-        $account->password = $request->get('pwd');
+         $account = Account::where('id', $request->input('id'))->first();
+        $account->name = $request->get('username');
+        $account->password = Hash::make($request->get('pwd'));
         $account->email = $request->get('email');
         $account->role = $request->get('role');
         $account->save();
@@ -54,9 +54,9 @@ class UserController extends Controller
     }
     public function AddNew(Request $request)
     {
-        $account = new Account([
-            'username' => $request->get('username'),
-            'password' => $request->get('pwd'),
+       $account = new Account([
+            'name' => $request->get('username'),
+            'password' => Hash::make($request->get('pwd')),
             'active' => 1,
             'role' => $request->get('role'),
             'email' => $request->get('email'),

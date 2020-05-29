@@ -156,7 +156,7 @@
     {
         $.ajax({
                 type: 'GET',
-                url: '/Getlist',
+                url: '/Account/Getlist',
                 success: function(result) {
                     initTimeFrameDatatable(JSON.parse(result));
                 },

@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 class BookController extends Controller
 {
+public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function getview()
     {
         return view('Hieuadmin.book.book');

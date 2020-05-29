@@ -18,13 +18,14 @@ Route::group(['middleware' => 'locale'], function() {
 Route::get('/', function () {
     return view('welcome');
 });
+Auth::routes();
 //User
-Route::get('/Hellowebsite','Admin\HelloController@getHello');
-Route::get('/GetListCategory','Admin\HelloController@getCategory');
-Route::post('/Account/PrepareEdit','Admin\HelloController@PrepareEdit');
-Route::post('/Account/Edit','Admin\HelloController@Edit');
-Route::post('/Account/Delete','Admin\HelloController@Delete');
-Route::post('/Account/Add','Admin\HelloController@AddNew');
+Route::get('/User','Admin\UserController@getview');
+Route::get('/Account/Getlist','Admin\UserController@getUser');
+Route::post('/Account/PrepareEdit','Admin\UserController@PrepareEdit');
+Route::post('/Account/Edit','Admin\UserController@Edit');
+Route::post('/Account/Delete','Admin\UserController@Delete');
+Route::post('/Account/Add','Admin\UserController@AddNew');
 
 //Book
 Route::get('/Book','Hieuadmin\BookController@getview');
@@ -79,3 +80,6 @@ Route::post('/LostList/PrepareEdit','Hieuadmin\LostController@PrepareEdit');
 Route::post('/LostList/Edit','Hieuadmin\LostController@Edit');
 Route::post('/LostList/Delete','Hieuadmin\LostController@Delete');
 Route::post('/LostList/Add','Hieuadmin\LostController@AddNew');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

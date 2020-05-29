@@ -45,9 +45,29 @@
                         <li class="notifications new">
                             <a href="{!! route('user.change-language', ['en']) !!}"><img src="./images/united-kingdom.svg" style="width: 32px;"></a>
                         </li>
-                        <ul style="padding-right: 5px;">
+                        <li style="padding-right: 5px;">
                             <a href="{!! route('user.change-language', ['vi']) !!}"><img src="./images/vi.png" style="width: 32px;"></a>
-                        </ul>
+                        </li>
+                        <li style="padding-right: 5px;">
+                        <a class="dropdown-item" href="#"
+                                       >
+                                       {{ Auth::user()->name }}
+                                    </a>
+
+                                   
+                        </li>
+                        <li style="padding-right: 5px;">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                        </li>
+                        
                         
                     </ul>
                 </div>
