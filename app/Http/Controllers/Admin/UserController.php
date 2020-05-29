@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function getview()
     {
         return view('admin.user.user');
@@ -35,11 +39,13 @@ class UserController extends Controller
     }
     public function Edit(Request $request)
     {
+        
          $account = Account::where('id', $request->input('id'))->first();
         $account->name = $request->get('username');
         $account->password = Hash::make($request->get('pwd'));
         $account->email = $request->get('email');
         $account->role = $request->get('role');
+        
         $account->save();
         $mess = true;
         echo json_encode($mess);

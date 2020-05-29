@@ -135,6 +135,15 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
+                        <span>Hinhf anh</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="file" id="imageedit" class="form-control" />
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 form-control-label">
                         <span>Mã số sv</span>
                     </label>
                     <div class="col-sm-8">
@@ -374,20 +383,29 @@
             alert("Vui lòng nhập tên thể loại");
                 return;
             }
-            
+            var form_data = new FormData();
+            //thêm files vào trong form data
+            form_data.append('image', $("#imageedit").prop('files')[0]);
+            form_data.append('name', $("#nameedit").val());
+            form_data.append('code', $("#codeedit").val());
+            form_data.append('id', $("#id").val());
+            form_data.append('sex', +$("#sexedit").val());
+            form_data.append('dob', $("#dobedit").val());
+            form_data.append('card', +$("#cardedit").val());
+            form_data.append('start',  $("#startedit").val());
+            form_data.append('end', $("#endedit").val());
+            console.log($("#imageedit").prop('files')[0]);
             $.ajax({
                 type: 'POST',
-                url: '/Card/Edit',
-                data: {
-                    _token: "{{csrf_token()}}",
-                    'name': $("#nameedit").val(),
-                    'code': $("#codeedit").val(),
-                    'sex': +$("#sexedit").val(),
-                    'dob': $("#dobedit").val(),
-                    'card': +$("#cardedit").val(),
-                    'start': $("#startedit").val(),
-                    'end': $("#endedit").val(),
+                url: '/Student/Edit',
+                headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType:'JSON',
                 success: function(result) {
                     if (result == 'true') {
                         alert("Chỉnh sửa thành công");

@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function getview()
     {
         return view('Hieuadmin.student.student');
@@ -47,6 +51,10 @@ class StudentController extends Controller
     }
     public function Edit(Request $request)
     {
+        $user_image = $request->file('image')->getClientOriginalName();
+                  $imageName = rand(0, 1000) . '-' . '123' .  $user_image;
+                   $imagePath = 'user-image/' . $imageName;
+                   $request->file('image')->move(public_path('/user-image'), $imageName);
         $account = Student::where('id', $request->input('id'))->first();
         $account->name = $request->get('name');
         $account->code = $request->get('code');
@@ -55,6 +63,7 @@ class StudentController extends Controller
         $account->start = $request->get('start');
         $account->end = $request->get('end');
         $account->cardid = $request->get('card');
+        $account->image = $imagePath;
         $account->save();
         $mess = true;
         echo json_encode($mess);
