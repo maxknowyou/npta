@@ -77,6 +77,9 @@ class LostController extends Controller
                 'active' => 1,
             ]);
             $account->save();
+            $book = Book::where('id', (int)$book)->first();
+            $book->total -= 1;
+            $book->save();
         }
         
         $mess = true;

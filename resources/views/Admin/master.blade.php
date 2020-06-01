@@ -43,7 +43,7 @@
                 <div class="header-block header-block-nav">
                     <ul class="nav-profile">
                         <li class="notifications new">
-                            <a href="{!! route('user.change-language', ['en']) !!}"><img src="./images/united-kingdom.svg" style="width: 32px;"></a>
+                            <a href="{!! route('user.change-language', ['en']) !!}"><img src="./images/en.png" style="width: 32px;"></a>
                         </li>
                         <li style="padding-right: 5px;">
                             <a href="{!! route('user.change-language', ['vi']) !!}"><img src="./images/vi.png" style="width: 32px;"></a>
@@ -84,45 +84,45 @@
                                 <span class="l l3"></span>
                                 <span class="l l4"></span>
                                 <span class="l l5"></span>
-                            </div> {{__('BOOKSALEMANAGER')}}
+                            </div> {{__('Booklibary')}}
                         </div>
                     </div>
                     <nav class="menu">
                         <ul class="sidebar-menu metismenu" id="sidebar-menu">
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-home"></i> {{__('SYSTEMMANAGEMENT')}}
+                                <a href="/Book">
+                                    <i class="fa fa-home"></i> {{__('Book')}}
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-users"></i> {{__('MEMBERSHIPMANAGEMENT')}}
+                                <a href="/Card">
+                                    <i class="fa fa-users"></i> {{__('Card')}}
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/Student">
+                                    <i class="fa fa-exchange"></i> {{__('Student')}}
                                 </a>
                             </li>
                             <li>
-                                <a href="">
-                                    <i class="fa fa-th-large"></i> {{__('LIBRARYMANAGEMENT')}} <i class="fa arrow"></i>
-                                </a>
-                                <ul class="sidebar-nav">
-                                    <li>
-                                        <a href="#"> {{__('DIRECTORYMANAGEMENT')}} </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"> {{__('CATEGORIES')}} </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"> {{__('BOOKSMANAGEMENT')}} </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-exchange"></i> {{__('TRANSACTIONSMANAGEMENT')}}
+                                <a href="/BorrowList">
+                                    <i class="fa fa-address-card"></i> {{__('Borrow')}}
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-address-card"></i> {{__('ACCOUNTMANAGEMENT')}}
+                                <a href="/LostList">
+                                    <i class="fa fa-address-card"></i> {{__('Lost')}}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Genre">
+                                    <i class="fa fa-address-card"></i> {{__('Genre')}}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/User">
+                                    <i class="fa fa-address-card"></i> {{__('User')}}
                                 </a>
                             </li>
                         </ul>

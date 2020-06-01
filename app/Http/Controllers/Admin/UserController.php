@@ -27,7 +27,7 @@ class UserController extends Controller
         foreach ($posts as $post) {
             $data2 = [];
             
-            array_push($data2, $count1++, $post->name,$post->email,$post->active,$post->id);
+            array_push($data2, $count1++, $post->name,$post->email,$post->role,$post->active,$post->id);
             array_push($data,$data2);
         }
         echo json_encode($data);

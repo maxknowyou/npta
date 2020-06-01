@@ -18,7 +18,7 @@
                
                     <h3  style="font-size: 25px;"> Danh sách tài khoản
                     </h3>
-                    <button type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
+                    <button id="Addbtn" type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
                     
         </div>
         <table class="table table-bordered" id="posts">
@@ -35,9 +35,12 @@
             </thead>
             <tbody></tbody>
         </table>
-        <div id="AddModal" class="modal" data-backdrop="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
+       
+    </div>
+    
+    <div id="AddModal" class="modal" data-backdrop="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Thêm học sinh</h5>
             </div>
@@ -48,6 +51,18 @@
                     </label>
                     <div class="col-sm-8">
                         <input id="name" class="form-control" />
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 form-control-label">
+                        <span>Hình ảnh</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="file" id="image" class="form-control" onchange="readURL1(this);"/>
+                        <div id="formupload" style="padding-bottom:10px;padding-bottom:10px;">
+                            <img style="width:150px;height:200px" id="Imganhbia" src="./RootPicture/tenor.gif"  />
+                        </div>
                     </div>
 
                 </div>
@@ -111,11 +126,8 @@
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
                 <button type="button" class="btn btn-primary" id="SaveAdd">Thêm</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div>
-    
-</div>
-<div id="EditModal" class="modal" data-backdrop="true">
+        </div>
+    <div id="EditModal" class="modal" data-backdrop="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -135,10 +147,13 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Hinhf anh</span>
+                        <span>Hình ảnh</span>
                     </label>
                     <div class="col-sm-8">
-                        <input type="file" id="imageedit" class="form-control" />
+                        <input type="file" id="imageedit" class="form-control" onchange="readURL(this);"/>
+                        <div id="formupload" style="padding-bottom:10px;padding-bottom:10px;">
+                            <img style="width:150px;height:200px" id="Imganhbiaedit" src="./RootPicture/tenor.gif"  />
+                        </div>
                     </div>
 
                 </div>
@@ -205,11 +220,13 @@
             </div>
         </div><!-- /.modal-content -->
     </div>
-{{ csrf_field() }}
+    {{ csrf_field() }}
 </article>
 <script>
     
-
+    $("#Addbtn").on("click",function(){
+        $("#AddModal").modal("show");
+    })
     $(document).ready(function() {        
         document.getElementById("dob").valueAsDate = new Date();
         document.getElementById("start").valueAsDate = new Date();
@@ -355,6 +372,7 @@
              },
              success: function (results) {
                  let result = JSON.parse(results);
+                 console.log(result);
                  $("#id").val(result.id);
                  $("#nameedit").val(result.name);
                  $("#codeedit").val(result.code);
@@ -363,6 +381,7 @@
                  $("#startedit").val(result.start);
                  $("#endedit").val(result.end);
                  $("#cardedit").val(result.cardid);
+                 $("#Imganhbiaedit").prop("src", result.image);
                 }
             });
          $('#EditModal').modal('show');
@@ -427,27 +446,33 @@
             alert("Vui lòng nhập tên trạng thái");
                 return;
             }
-           
+            var form_data = new FormData();
+            //thêm files vào trong form data
+            form_data.append('image', $("#image").prop('files')[0]);
+            form_data.append('name', $("#name").val());
+            form_data.append('code', $("#code").val());
+            form_data.append('sex', +$("#sex").val());
+            form_data.append('dob', $("#dob").val());
+            form_data.append('card', +$("#card").val());
+            form_data.append('start',  $("#start").val());
+            form_data.append('end', $("#end").val());
             $.ajax({
                 type: 'POST',
                 url: '/Student/Add',
-                data: {
-                    _token: "{{csrf_token()}}",
-                    'name': $("#name").val(),
-                    'code': $("#code").val(),
-                    'sex': +$("#sex").val(),
-                    'dob': $("#dob").val(),
-                    'card': +$("#card").val(),
-                    'start': $("#start").val(),
-                    'end': $("#end").val(),
+                headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType:'JSON',
                 success: function(result) {
                     console.log(result);
-                    if (result == 'true') {
-                        alert("Thêm thành công");
-                        LoadCategory();
+                    if (result == true) {
+                        //alert("Chỉnh sửa thành công");
                         $('#AddModal').modal('hide');
-                        ResetAddModal();
+                        LoadCategory();
                     } else {
                         alert("Thêm thành công");
                     }
@@ -482,6 +507,30 @@
                     });
 }
     }
+    function readURL(input) {
+                if (input.files && input.files[0]) {
+
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $("#Imganhbiaedit").prop("src", reader.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            };
+            function readURL1(input) {
+                if (input.files && input.files[0]) {
+
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $("#Imganhbia").prop("src", reader.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            };
 </script>
 
 @endsection

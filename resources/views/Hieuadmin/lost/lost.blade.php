@@ -18,7 +18,7 @@
                
                     <h3  style="font-size: 25px;"> Danh sách tài khoản
                     </h3>
-                    <button type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
+                    <button id="Addbtn" type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
                     
         </div>
         <table class="table table-bordered" id="posts">
@@ -153,7 +153,9 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script>
     
-
+    $("#Addbtn").on("click",function(){
+        $("#AddModal").modal("show");
+    })
     $(document).ready(function() {
         document.getElementById("time").valueAsDate = new Date();
         document.getElementById("timeedit").valueAsDate = new Date();

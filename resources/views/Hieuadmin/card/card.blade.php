@@ -18,7 +18,7 @@
                
                     <h3  style="font-size: 25px;"> Danh sách thẻ
                     </h3>
-                    <button type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
+                    <button id="Addbtn" type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
                     
         </div>
         <table class="table table-bordered" id="posts">
@@ -125,7 +125,9 @@
 </article>
 <script>
     
-
+    $("#Addbtn").on("click",function(){
+        $("#AddModal").modal("show");
+    })
     $(document).ready(function() {
         LoadCard();
     });

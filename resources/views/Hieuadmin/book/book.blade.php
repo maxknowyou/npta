@@ -18,7 +18,7 @@
                
                     <h3  style="font-size: 25px;"> Danh sách sách
                     </h3>
-                    <button type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
+                    <button id="Addbtn" type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
                     
         </div>
         <table class="table table-bordered" id="posts">
@@ -357,6 +357,9 @@
                     alert("Có lỗi xảy ra, vui lòng thử lại");
                 }
             });
+    })
+    $("#Addbtn").on("click",function(){
+        $("#AddModal").modal("show");
     })
       $("#SaveAdd").on("click", function () {
          if ($('#name').val() == "") {

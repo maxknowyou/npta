@@ -16,18 +16,19 @@
         <div class="title-block">
            
                
-                    <h3  style="font-size: 25px;"> Danh sách tài khoản
+                    <h3  style="font-size: 25px;"> {{__('ListUser')}}
                     </h3>
-                    <button type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
+                    <button id="Addbtn" type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
                     
         </div>
         <table class="table table-bordered" id="posts">
             <thead>
                 <th>{{__('No.')}}</th>
-                <th>Tài khoản</th>
-                <th>Email</th>
-                <th>Trạng thái</th>
-                <th>Tùy chọn</th>
+                <th>{{__('UserName')}}</th>
+                <th>{{__('Email')}}</th>
+                <th>{{__('Type')}}</th>
+                <th>{{__('Active')}}</th>
+                <th>{{__('Option')}}</th>
             </thead>
             <tbody></tbody>
         </table>
@@ -35,12 +36,12 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Thêm tài khoản</h5>
+                <h5 class="modal-title">{{__('AddnewUser')}}</h5>
             </div>
             <div class="modal-body text-center p-lg">
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Tài khoản</span>
+                        <span>{{__('UserName')}}</span>
                     </label>
                     <div class="col-sm-8">
                         <input id="username" class="form-control" />
@@ -49,7 +50,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Mật khẩu</span>
+                        <span>{{__('Pwd')}}</span>
                     </label>
                     <div class="col-sm-8">
 
@@ -69,20 +70,20 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Loại tài khoản</span>
+                        <span>{{__('Type')}}</span>
                     </label>
                     <div class="col-sm-8">
                         <select id="role" class="form-control select2" ui-jp="select2" ui-options="{theme: 'bootstrap'}" style="width:100%">
-                            <option value="1">Thủ thư</option>
-                            <option value="2">Admin</option>
+                            <option value="1">{{__('Librarian')}}</option>
+                            <option value="2">{{__('Admin')}}</option>
                         </select>
                     </div>
 
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" id="SaveAdd">Thêm</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">{{__('Cancel')}}</button>
+                <button type="button" class="btn btn-primary" id="SaveAdd">{{__('Add new')}}</button>
             </div>
         </div><!-- /.modal-content -->
     </div>
@@ -98,7 +99,7 @@
             <div class="modal-body text-center p-lg">
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Tài khoản</span>
+                        <span>{{__('UserName')}}</span>
                     </label>
                     <div class="col-sm-8">
                         <input id="usernameedit" class="form-control" />
@@ -107,7 +108,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Mật khẩu</span>
+                        <span>{{__('Pwd')}}</span>
                     </label>
                     <div class="col-sm-8">
 
@@ -127,20 +128,20 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Loại tài khoản</span>
+                        <span>{{__('Type')}}</span>
                     </label>
                     <div class="col-sm-8">
                         <select id="roleedit" class="form-control"  style="width:100%">
-                            <option value="1">Thủ thư</option>
-                            <option value="2">Admin</option>
+                            <option value="1">{{__('Librarian')}}</option>
+                            <option value="2">{{__('Admin')}}</option>
                         </select>
                     </div>
 
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" id="SaveEdit">Sửa</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">{{__('Add new')}}</button>
+                <button type="button" class="btn btn-primary" id="SaveEdit">{{__('Save')}}</button>
             </div>
         </div><!-- /.modal-content -->
     </div>
@@ -148,7 +149,9 @@
 </article>
 <script>
    
-
+   $("#Addbtn").on("click",function(){
+        $("#AddModal").modal("show");
+    })
     $(document).ready(function() {
         LoadUser();
     });
@@ -191,7 +194,7 @@
                 },
                 "aoColumnDefs": [
                     {
-                        "aTargets": [0, 1,2,3,4],
+                        "aTargets": [0, 1,2,3,4,5],
                         "sClass": "text-center",
                         "bSortable": false
                     },
@@ -200,11 +203,11 @@
                         "mRender": function (data, type, row) {
                             if(data == 1)
                             {
-                                return '<span class="btn btn-primary disabled">Đang hoạt động</span>';
+                                return '{{__("Librarian")}}';
                             }
                             else
                             {
-                                return '<span class="btn btn-warning disabled">Ngưng hoạt động</span>'
+                                return '{{__("Admin")}}';
                             }
                             
                         },
@@ -212,14 +215,28 @@
                     {
                         "aTargets": [4],
                         "mRender": function (data, type, row) {
+                            if(data == 1)
+                            {
+                                return '<span class="btn btn-primary disabled">{{__("BeActive")}}</span>';
+                            }
+                            else
+                            {
+                                return '<span class="btn btn-warning disabled">{{__("Deactive")}}</span>'
+                            }
+                            
+                        },
+                    },
+                    {
+                        "aTargets": [5],
+                        "mRender": function (data, type, row) {
                             var edit =
                                 "<a title='Xóa' class='btn btn-sm btn-primary' onclick='showEditModal(" +
                                 data +
-                                ")'>Sửa</a>";
+                                ")'>{{__('Edit')}}</a>";
                             var del =
                                 "<a title='Xóa' class='btn btn-sm btn-primary' onclick='Delete(" +
                                 data +
-                                ")'>Xóa</a>";
+                                ")'>{{__('Del')}}</a>";
                             return edit+ " " + del ;
                         },
                     }

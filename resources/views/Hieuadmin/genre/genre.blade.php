@@ -16,17 +16,17 @@
         <div class="title-block">
            
                
-                    <h3  style="font-size: 25px;"> Danh sách thể loại
+                    <h3  style="font-size: 25px;"> {{__('ListGenre')}}
                     </h3>
-                    <button type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
+                    <button type="button" class="btn  btn-primary col-sm-2 offset-sm-10" id="Addbtn">{{__('Add new')}}</button>
                     
         </div>
         <table class="table table-bordered" id="posts">
             <thead>
                 <th>{{__('No.')}}</th>
-                <th>Tên</th>
-                <th>Trạng thái</th>
-                <th>Tùy chọn</th>
+                <th>{{__('GenreName')}}</th>
+                <th>{{__('Active')}}</th>
+                <th>{{__('Option')}}</th>
             </thead>
             <tbody></tbody>
         </table>
@@ -34,12 +34,12 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Thêm thể loại</h5>
+                <h5 class="modal-title">{{__('AddnewGenre')}}</h5>
             </div>
             <div class="modal-body text-center p-lg">
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Tên thể loại</span>
+                        <span>{{__('GenreName')}}</span>
                     </label>
                     <div class="col-sm-8">
                         <input id="name" class="form-control" />
@@ -49,8 +49,8 @@
               
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" id="SaveAdd">Thêm</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">{{__('Cancel')}}</button>
+                <button type="button" class="btn btn-primary" id="SaveAdd">{{__('Add new')}}</button>
             </div>
         </div><!-- /.modal-content -->
     </div>
@@ -66,7 +66,7 @@
             <div class="modal-body text-center p-lg">
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Tên thể loại</span>
+                        <span>{{__('GenreName')}}</span>
                     </label>
                     <div class="col-sm-8">
                         <input id="nameedit" class="form-control" />
@@ -76,8 +76,8 @@
                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" id="SaveEdit">Sửa</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">{{__('Cancel')}}</button>
+                <button type="button" class="btn btn-primary" id="SaveEdit">{{__('Save')}}</button>
             </div>
         </div><!-- /.modal-content -->
     </div>
@@ -88,6 +88,9 @@
     $(document).ready(function() {
         LoadGenre();
     });
+    $("#Addbtn").on("click",function(){
+        $("#AddModal").modal("show");
+    })
     function LoadGenre()
     {
         $.ajax({
@@ -136,11 +139,11 @@
                         "mRender": function (data, type, row) {
                             if(data == 1)
                             {
-                                return '<span class="btn btn-primary disabled">Đang hoạt động</span>';
+                                return '<span class="btn btn-primary disabled">{{__("BeActive")}}</span>';
                             }
                             else
                             {
-                                return '<span class="btn btn-warning disabled">Ngưng hoạt động</span>'
+                                return '<span class="btn btn-warning disabled">{{__("Deactive")}}</span>'
                             }
                             
                         },
@@ -151,11 +154,11 @@
                             var edit =
                                 "<a title='Xóa' class='btn btn-sm btn-primary' onclick='showEditModal(" +
                                 data +
-                                ")'>Sửa</a>";
+                                ")'>{{__('Edit')}}</a>";
                             var del =
                                 "<a title='Xóa' class='btn btn-sm btn-primary' onclick='Delete(" +
                                 data +
-                                ")'>Xóa</a>";
+                                ")'>{{__('Del')}}</a>";
                             return edit+ " " + del ;
                         },
                     }
@@ -239,7 +242,7 @@
                    
                 },
                 success: function(result) {
-                    if (result.rs == 'true') {
+                    if (result == 'true') {
                         alert("Thêm thành công");
                         LoadGenre();
                         $('#AddModal').modal('hide');

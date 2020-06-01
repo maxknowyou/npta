@@ -51,11 +51,17 @@ class StudentController extends Controller
     }
     public function Edit(Request $request)
     {
-        $user_image = $request->file('image')->getClientOriginalName();
-                  $imageName = rand(0, 1000) . '-' . '123' .  $user_image;
-                   $imagePath = 'user-image/' . $imageName;
-                   $request->file('image')->move(public_path('/user-image'), $imageName);
         $account = Student::where('id', $request->input('id'))->first();
+        if($request->file('image') != null)
+        {
+            $user_image = $request->file('image')->getClientOriginalName();
+            $imageName = rand(0, 1000) . '-' . '123' .  $user_image;
+             $imagePath = 'user-image/' . $imageName;
+             $request->file('image')->move(public_path('/user-image'), $imageName);
+             $account->image = $imagePath;
+        }
+        
+       
         $account->name = $request->get('name');
         $account->code = $request->get('code');
         $account->sex = $request->get('sex');
@@ -63,7 +69,6 @@ class StudentController extends Controller
         $account->start = $request->get('start');
         $account->end = $request->get('end');
         $account->cardid = $request->get('card');
-        $account->image = $imagePath;
         $account->save();
         $mess = true;
         echo json_encode($mess);
@@ -78,6 +83,15 @@ class StudentController extends Controller
     }
     public function AddNew(Request $request)
     {
+        $imagePath = null;
+        if($request->file('image') != null)
+        {
+             $user_image = $request->file('image')->getClientOriginalName();
+             $imageName = rand(0, 1000) . '-' . '123' .  $user_image;
+             $imagePath = 'user-image/' . $imageName;
+             $request->file('image')->move(public_path('/user-image'), $imageName);
+            
+        }
         $account = new Student([
             'name' => $request->get('name'),
             'code' => $request->get('code'),
@@ -87,6 +101,7 @@ class StudentController extends Controller
             'start' => $request->get('start'),
             'end' => $request->get('end'),
             'active' => 1,
+            'image' => $imagePath,
         ]);
         $account->save();
         
