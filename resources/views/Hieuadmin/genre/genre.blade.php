@@ -18,7 +18,7 @@
                
                     <h3  style="font-size: 25px;"> {{__('ListGenre')}}
                     </h3>
-                    <button type="button" class="btn  btn-primary col-sm-2 offset-sm-10" id="Addbtn">{{__('Add new')}}</button>
+                    <button  type="button" class="btn  btn-primary col-sm-2 offset-sm-10" id="Addbtn">{{__('Add new')}}</button>
                     
         </div>
         <table class="table table-bordered" id="posts">

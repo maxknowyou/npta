@@ -84,3 +84,4 @@ Route::post('/LostList/Add','Hieuadmin\LostController@AddNew');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/Import/import', 'HieuAdmin\ImportController@import');

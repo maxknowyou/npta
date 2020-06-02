@@ -13,13 +13,21 @@
 <div class="mobile-menu-handle"></div>
 <article class="content items-list-page">
     <div class="title-search-block">
-        <div class="title-block">
+        <div class="title-block row">
            
-               
-                    <h3  style="font-size: 25px;"> Danh sách sách
+        <div class="col-md-6">
+        <h3  style="font-size: 25px;"> Danh sách sách
                     </h3>
-                    <button id="Addbtn" type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
+                </div>
+                <div class="col-md-6 text-right p-t-5">
+                <button id="Addbtn" type="button" class="btn ShowPopup btn-primary" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
+                    <button class="btn btn-primary" style="margin-right: 5px" id="btnCreateAccount">
+                            <i class="glyphicon glyphicon-plus"></i> Import Excel
+                    </button>
+                    <input type="file"  id="fileImport">
+                </div>
                     
+                   
         </div>
         <table class="table table-bordered" id="posts">
             <thead>
@@ -183,6 +191,7 @@
         </div><!-- /.modal-content -->
     </div>
 {{ csrf_field() }}
+<form class="hidden" id="ExportCreateAccountTemplate" action="@Url.Action("ExportCreateAccountTemplate")"></form>
 </article>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script>
@@ -419,6 +428,47 @@
                     });
 }
     }
+    $('#btnCreateAccount').on("click", function (e) {
+       
+            if (confirm("Bạn đã có mẫu file Excel?")) {
+                
+                    $('#fileImport').click();
+              
+} else {
+  txt = "You pressed Cancel!";
+}
+        })
+
+        $('#fileImport').on("change", function (e) { // will trigger each time
+            if (this.value != null) {
+                var file = $('#fileImport').get(0).files[0];
+                var formData = new FormData();
+                formData.append('file', file);
+                $.ajax({
+                    url: "/Import/import",
+                    type: "POST",
+                    headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        if (result) {
+                            alert("Import Excel thành công");
+                            setTimeout(function () {
+                                window.location.reload()
+                            }, 500)                            
+                        } else {
+                            alert("Import thất bại");
+                            setTimeout(function () {
+                                window.location.reload()
+                            }, 500)
+                        }
+                    }
+                });
+            }            
+        })
 </script>
 
 @endsection
