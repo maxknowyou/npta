@@ -120,11 +120,16 @@
                                     <i class="fa fa-address-card"></i> {{__('Genre')}}
                                 </a>
                             </li>
-                            <li>
+                            @if (Auth::user()->role === 2)
+                                
+                               
+                                    <li>
                                 <a href="/User">
                                     <i class="fa fa-address-card"></i> {{__('User')}}
                                 </a>
                             </li>
+                                
+                                @endif
                         </ul>
                     </nav>
                 </div>

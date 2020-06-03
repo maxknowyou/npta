@@ -21,12 +21,7 @@ Route::get('/', function () {
 });
 Auth::routes();
 //User
-Route::get('/User','Admin\UserController@getview');
-Route::get('/Account/Getlist','Admin\UserController@getUser');
-Route::post('/Account/PrepareEdit','Admin\UserController@PrepareEdit');
-Route::post('/Account/Edit','Admin\UserController@Edit');
-Route::post('/Account/Delete','Admin\UserController@Delete');
-Route::post('/Account/Add','Admin\UserController@AddNew');
+
 
 //Book
 Route::get('/Book','Hieuadmin\BookController@getview');
@@ -81,7 +76,18 @@ Route::post('/LostList/PrepareEdit','Hieuadmin\LostController@PrepareEdit');
 Route::post('/LostList/Edit','Hieuadmin\LostController@Edit');
 Route::post('/LostList/Delete','Hieuadmin\LostController@Delete');
 Route::post('/LostList/Add','Hieuadmin\LostController@AddNew');
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/Import/import', 'HieuAdmin\ImportController@import');
+
+Route::group(['middleware' => 'CheckRoles'], function() {
+    Route::get('/User','Admin\UserController@getview');
+Route::get('/Account/Getlist','Admin\UserController@getUser');
+Route::post('/Account/PrepareEdit','Admin\UserController@PrepareEdit');
+Route::post('/Account/Edit','Admin\UserController@Edit');
+Route::post('/Account/Delete','Admin\UserController@Delete');
+Route::post('/Account/Add','Admin\UserController@AddNew');
+    Route::get('/home', 'HomeController@index')->name('home');
+
+});
