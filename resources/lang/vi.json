@@ -29,7 +29,18 @@
     "Librarian": "Thủ thư",
     "Admin": "Quản lý",
 
-
+    "BorrowList":"Danh sách mượn",
+    "StudentName":"Tên sv",
+    "BookName":"Tên sách",
+    "Fromday":"Từ ngày",
+    "Today":"Đến ngày",
+    "ReturnDay":"Ngày trả",
+    "BorrowBook":"Thêm Chi tiết sách mượn",
+    "Return":"Trả",
+    "LostBook":"Mất",
+    "Borrowing":"Đang mượn",
+    "Returned":"Đã trả",
+    "Losted":"Làm mất",
     
     "ListGenre": "Danh sách thể loại",
     "GenreName": "Tên",

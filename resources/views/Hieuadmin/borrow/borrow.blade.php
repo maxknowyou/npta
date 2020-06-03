@@ -16,22 +16,22 @@
         <div class="title-block">
            
                
-                    <h3  style="font-size: 25px;"> Danh sách mượn
+                    <h3  style="font-size: 25px;"> {{__('BorrowList')}}
                     </h3>
-                    <button id="Addbtn" type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
+                    <button id="Addbtn" type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" >{{__('Add new')}}</button>
                     
         </div>
         <table class="table table-bordered" id="posts">
             <thead>
                 <th>{{__('No.')}}</th>
-                <th>Tên sinh viên</th>
-                <th>Tên sách</th>
-                <th>Từ(ngày)</th>
-                <th>Đến(ngày)</th>
-                <th>Tình trạng</th>
-                <th>Ngày trả</th>
-                <th>Trạng thái</th>
-                <th>Tùy chọn</th>
+                <th>{{__('StudentName')}}</th>
+                <th>{{__('BookName')}}</th>
+                <th>{{__('Fromday')}}</th>
+                <th>{{__('Today')}}</th>
+                <th>{{__('Status')}}</th>
+                <th>{{__('Returnday')}}</th>
+                <th>{{__('Active')}}</th>
+                <th>{{__('Option')}}</th>
             </thead>
             <tbody></tbody>
         </table>
@@ -39,12 +39,12 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Thêm</h5>
+                <h5 class="modal-title">{{__('BorrowBook')}}</h5>
             </div>
             <div class="modal-body text-center p-lg">
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Sinh viên</span>
+                        <span>{{__('StudentName')}}</span>
                     </label>
                     <div class="col-sm-8">
                     <select id="student" class="form-control "   style="width:100%;height:initial">
@@ -56,7 +56,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Sách</span>
+                        <span>{{__('BookName')}}</span>
                     </label>
                     <div class="col-sm-8">
                     <select id="book" style="width:100%" class="js-example-basic-multiple"  multiple="multiple"></select>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Từ ngày</span>
+                        <span>{{__('Fromday')}}</span>
                     </label>
                     <div class="col-sm-8">
                         <input type="date" id="from" class="form-control" />
@@ -74,7 +74,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Đến ngày</span>
+                        <span>{{__('Today')}}</span>
                     </label>
                     <div class="col-sm-8">
                     <input type="date" id="to" class="form-control" />
@@ -82,7 +82,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Tình Trạng</span>
+                        <span>{{__('Status')}}</span>
                     </label>
                     <div class="col-sm-8">
                     <select id="status" class="form-control "   style="width:100%;height:initial">
@@ -95,8 +95,8 @@
                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" id="SaveAdd">Thêm</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">{{__('Cancel')}}</button>
+                <button type="button" class="btn btn-primary" id="SaveAdd">{{__('Add new')}}</button>
             </div>
         </div><!-- /.modal-content -->
     </div>
@@ -113,7 +113,7 @@
             <div class="modal-body text-center p-lg">
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Sinh viên</span>
+                        <span>{{__('StudentName')}}</span>
                     </label>
                     <div class="col-sm-8">
                     <select id="studentedit" class="form-control "   style="width:100%;height:initial">
@@ -125,7 +125,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Sách</span>
+                        <span>{{__('StudentName')}}</span>
                     </label>
                     <div class="col-sm-8">
                     <select id="bookedit" class="form-control "   style="width:100%;height:initial">
@@ -136,7 +136,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Từ ngày</span>
+                        <span>{{__('Fromday')}}</span>
                     </label>
                     <div class="col-sm-8">
                         <input type="date" id="fromedit" class="form-control" />
@@ -145,7 +145,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Đến ngày</span>
+                        <span>{{__('Today')}}</span>
                     </label>
                     <div class="col-sm-8">
                     <input type="date" id="toedit" class="form-control" />
@@ -153,19 +153,19 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Tình Trạng</span>
+                        <span>{{__('Status')}}</span>
                     </label>
                     <div class="col-sm-8">
                     <select id="statusedit" class="form-control "   style="width:100%;height:initial">
-                            <option value="1">Đang mượn</option>
-                            <option value="2">Đã trả</option>
-                            <option value="3">Làm mất</option>
+                            <option value="1">{{__('Borrowing')}}</option>
+                            <option value="2">{{__('Returned')}}</option>
+                            <option value="3">{{__('Losted')}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>Ngày trả</span>
+                        <span>{{__('ReturnDay')}}</span>
                     </label>
                     <div class="col-sm-8">
                     <input type="date" id="returndayedit" class="form-control" />
@@ -174,8 +174,8 @@
             </div>
             
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" id="SaveEdit">Sửa</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">{{__('Cancel')}}</button>
+                <button type="button" class="btn btn-primary" id="SaveEdit">{{__('Save')}}</button>
             </div>
         </div><!-- /.modal-content -->
     </div>
@@ -288,17 +288,17 @@
                         "mRender": function (data, type, row) {
                             if(data == 1)
                             {
-                                return 'Đang mượn';
+                                return ' {{__("Borrowing")}}';
                             }
                             else
                             if(data == 2)
                             {
-                                return 'Đã trả';
+                                return '{{__("Returned")}}';
                             }
                             else
                             if(data == 3)
                             {
-                                return 'Làm mất';
+                                return '{{__("Losted")}}';
                             }
                         },
                     },
@@ -307,11 +307,11 @@
                         "mRender": function (data, type, row) {
                             if(data == 1)
                             {
-                                return '<span class="btn btn-primary disabled">Đang hoạt động</span>';
+                                return '<span class="btn btn-primary disabled">{{__("BeActive")}}</span>';
                             }
                             else
                             {
-                                return '<span class="btn btn-warning disabled">Ngưng hoạt động</span>'
+                                return '<span class="btn btn-warning disabled">{{__("Deactive")}}</span>'
                             }
                             
                         },
@@ -322,19 +322,19 @@
                             var edit =
                                 "<a title='Sửa' class='btn btn-sm btn-primary' onclick='showEditModal(" +
                                 data +
-                                ")'>Sửa</a>";
+                                ")'>{{__('Edit')}}</a>";
                             var del =
                                 "<a title='Xóa' class='btn btn-sm btn-primary' onclick='Delete(" +
                                 data +
-                                ")'>Xóa</a>";
+                                ")'>{{__('Del')}}</a>";
                             var returnbook =
                                 "<a title='Trả' class='btn btn-sm btn-primary' onclick='Return(" +
                                 data +
-                                ")'>Trả</a>";
+                                ")'>{{__('Return')}}</a>";
                             var lost =
                                 "<a title='Mất' class='btn btn-sm btn-primary' onclick='Lost(" +
                                 data +
-                                ")'>Mất</a>";
+                                ")'>{{__('Lost')}}</a>";
                             return edit+ " " + del + " " + returnbook+ " " + lost;
                         },
                     }

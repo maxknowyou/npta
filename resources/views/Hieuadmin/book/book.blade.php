@@ -20,11 +20,11 @@
                     </h3>
                 </div>
                 <div class="col-md-6 text-right p-t-5">
-                <button id="Addbtn" type="button" class="btn ShowPopup btn-primary" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
+                <button id="Addbtn" type="button" class="btn ShowPopup btn-primary">Thêm mới</button>
                     <button class="btn btn-primary" style="margin-right: 5px" id="btnCreateAccount">
                             <i class="glyphicon glyphicon-plus"></i> Import Excel
                     </button>
-                    <input type="file"  id="fileImport">
+                    <input type="file" style="display:none" id="fileImport">
                 </div>
                     
                    
