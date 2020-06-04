@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Collection as CollectionHelper;
+use App\Book;
+use App\Borrow;
+use App\Lost;
 class HomeController extends Controller
 {
     /**
@@ -28,5 +31,19 @@ class HomeController extends Controller
     public function changeLanguage($language){
         \Session::put('website_language', $language);
         return redirect()->back();
+    }
+    public function HomeGetInfo()
+    {
+        $book_active = Book::where('active', 1)->sum('total');
+        $book_borrow = Borrow::where('active', 1)->where('status',1)->sum('amount');
+        $book_lost = Lost::where('active', 1)->sum('amount');
+        $book_total = $book_active + $book_borrow + $book_lost;
+        $json_data = array(
+            "active"            => $book_active,
+            "borrow"    => $book_borrow,
+            "lost" =>  $book_lost,
+            "total"            => $book_total
+        );
+        echo json_encode($json_data);
     }
 }

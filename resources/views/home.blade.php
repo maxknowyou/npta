@@ -11,20 +11,20 @@
                 <div class="card sameheight-item" data-exclude="xs">
                     <div class="card-header card-header-sm bordered">
                         <div class="header-block">
-                            <h3 class="title" style="font-size: 20px;">Tong so sach: 200 cuon</h3>
+                            <h3 class="title" style="font-size: 20px;">Tổng số sách: <span id="TotalBook"></span> cuốn</h3>
                         </div>
                     </div>
                     <div class="card-block">
                         <div class="form-group ">
                             <div class="row stat-icon">
                                 <i class="fa fa-shopping-cart pl-1 pt-1 pr-1"></i>
-                                <div class="name">Sach duoc muon</div>
+                                <div class="name">Sách đang mượn</div>
                             </div>
                             <div class="stat">
-                                <div class="value">1 cuon</div>
+                                <div class="value"> <span id="BorrowBook"></span> cuốn</div>
                             </div>
                             <div class="progress stat-progress">
-                                <div class="progress-bar"
+                                <div class="progress-bar" id="BorrowBookbar"
                                     style="width: 100%;"></div>
                             </div>
                         </div>
@@ -32,13 +32,13 @@
                         <div class="form-group">
                             <div class="row stat-icon">
                                 <i class="fa fa-users pl-1 pt-1 pr-1"></i>
-                                <div class="name">1</div>
+                                <div class="name">Sách làm mất</div>
                             </div>
                             <div class="stat">
-                                <div class="value"> 1 </div>
+                            <div class="value"> <span id="LostBook"></span> cuốn</div>
                             </div>
                             <div class="progress stat-progress">
-                                <div class="progress-bar"
+                                <div class="progress-bar" id="LostBookbar"
                                     style="width: 10%;">
                                 </div>
                             </div>
@@ -46,34 +46,20 @@
                         <div class="form-group">
                             <div class="row stat-icon">
                                 <i class="fa fa-line-chart pl-1 pt-1 pr-1"></i>
-                                <div class="name">1</div>
+                                <div class="name">Sách còn lại</div>
                             </div>
                             <div class="stat">
                                 <div class="value">
-                                   1 VNĐ
+                                <div class="value"> <span id="Book"></span> cuốn</div>
                                 </div>
                             </div>
                             <div class="progress stat-progress">
-                                <div class="progress-bar"
+                                <div class="progress-bar" id="Bookbar"
                                     style="width: 10%;">
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="row stat-icon">
-                                <i class="fa fa-dollar pl-1 pt-1 pr-1"></i>
-                                <div class="name">1</div>
-                            </div>
-                            <div class="stat">
-                                <div class="value">
-                                   1 VNĐ </div>
-                            </div>
-                            <div class="progress stat-progress">
-                                <div class="progress-bar"
-                                    style="width: 10%;">
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -175,6 +161,9 @@
 </article>
 
 <script>
+$(document).ready(function() {
+    LoadNumber();
+    });
 var ctx = document.getElementById('myChart').getContext('2d');
 var ctx = document.getElementById('myChart');
 var myChart = new Chart(ctx, {
@@ -213,6 +202,28 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-
+function LoadNumber()
+{
+    $.ajax({
+                type: 'GET',
+                url: '/home/getinfo',
+                
+                success: function(result) {
+                    console.log(result);
+                    var res = JSON.parse(result);
+                    $("#TotalBook").text(res.total);
+                    $("#BorrowBook").text(res.borrow);
+                    $("#LostBook").text(res.lost);
+                    $("#Book").text(res.active);
+                    $("#BorrowBookbar").css("width",res.borrow/res.total*100 +"%");
+                    $("#LostBookbar").css("width",res.lost/res.total*100 + "%");
+                    $("#Bookbar").css("width",res.active/res.total*100 + "%");
+                
+                },
+                error: function(error) {
+                    alert("Có lỗi xảy ra, vui lòng thử lại", 1);
+                }
+            });
+}
 </script>
 @endsection

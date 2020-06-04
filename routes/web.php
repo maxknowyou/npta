@@ -89,5 +89,5 @@ Route::post('/Account/Edit','Admin\UserController@Edit');
 Route::post('/Account/Delete','Admin\UserController@Delete');
 Route::post('/Account/Add','Admin\UserController@AddNew');
     Route::get('/home', 'HomeController@index')->name('home');
-
+    Route::get('/home/getinfo', 'HomeController@HomeGetInfo')->name('home');
 });
