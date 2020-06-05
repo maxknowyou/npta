@@ -122,6 +122,18 @@ class BorrowController extends Controller
     }
     public function AddNew(Request $request)
     {
+        $student = Student::where('id', $request->get('student'))->first();
+        
+        $card = Card::where('id', $student->cardid)->first();
+        $borrow = Borrow::where('studentid',$request->get('student'))->where('active',1)->where('status',1)->sum('amount');
+        
+        if( count($request->get('book')) + $borrow >$card->totalborrow )
+        {
+        $mess = 'false';
+        echo json_encode($mess);
+        }
+        else
+        {
         foreach ($request->get('book') as $book) {
             $account = new Borrow([
                 'studentid' => $request->get('student'),
@@ -136,5 +148,7 @@ class BorrowController extends Controller
         }
         $mess = true;
         echo json_encode($mess);
+    }
+       
     }
 }

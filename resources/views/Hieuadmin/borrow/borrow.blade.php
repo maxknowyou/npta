@@ -428,13 +428,13 @@
                    
                 },
                 success: function(result) {
-                    if (result.rs == 'true') {
+                    if (result == 'true') {
                         alert("Thêm thành công");
                         LoadCategory();
                         $('#AddModal').modal('hide');
                         ResetAddModal();
                     } else {
-                        alert("Thêm thành công");
+                        alert("Quá số sách cho phép, vui lòng không cho mượn thêm");
                     }
                 },
                 error: function(error) {
