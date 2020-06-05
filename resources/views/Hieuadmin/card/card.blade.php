@@ -18,7 +18,7 @@
                
                     <h3  style="font-size: 25px;"> Danh sách thẻ
                     </h3>
-                    <button id="Addbtn" type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" >Thêm mới</button>
+                    <button id="Addbtn" type="button" class="btn btn-primary col-sm-2 offset-sm-10" >Thêm mới</button>
                     
         </div>
         <table class="table table-bordered" id="posts">
@@ -27,8 +27,8 @@
                 <th>Tên</th>
                 <th>Lượng sách được mượn</th>
                 <th>Hiệu lực(tháng)</th>
+                <th>Số ngày mượn</th>
                 <th>Trạng thái</th>
-               
                 <th>Tùy chọn</th>
             </thead>
             <tbody></tbody>
@@ -67,7 +67,15 @@
                     </div>
 
                 </div>
-              
+                <div class="form-group row">
+                    <label class="col-sm-4 form-control-label">
+                        <span>Thời gian mượn(ngày)</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input id="valday" class="form-control" />
+                    </div>
+
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
@@ -112,7 +120,15 @@
                     </div>
 
                 </div>
-              
+                <div class="form-group row">
+                    <label class="col-sm-4 form-control-label">
+                        <span>Thời gian mượn(ngày)</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input id="valdayedit" class="form-control" />
+                    </div>
+
+                </div>
                
             </div>
             <div class="modal-footer">
@@ -170,12 +186,12 @@
                 },
                 "aoColumnDefs": [
                     {
-                        "aTargets": [0, 1,2,3,4,5],
+                        "aTargets": [0, 1,2,3,4,5,6],
                         "sClass": "text-center",
                         "bSortable": false
                     },
                     {
-                        "aTargets": [4],
+                        "aTargets": [5],
                         "mRender": function (data, type, row) {
                             if(data == 1)
                             {
@@ -189,7 +205,7 @@
                         },
                     },
                     {
-                        "aTargets": [5],
+                        "aTargets": [6],
                         "mRender": function (data, type, row) {
                             var edit =
                                 "<a title='Xóa' class='btn btn-sm btn-primary' onclick='showEditModal(" +
@@ -221,6 +237,7 @@
                  $("#nameedit").val(result.name);
                  $("#totalborrowedit").val(result.totalborrow);
                  $("#validityedit").val(result.validity);
+                 $("#valdayedit").val(result.valday);
                 }
             });
          $('#EditModal').modal('show');
@@ -251,7 +268,7 @@
                     'name': $("#nameedit").val(),
                     'totalborrow': $("#totalborrowedit").val(),
                     'validity': $("#validityedit").val(),
-                   
+                    'valday': $("#valdayedit").val(),
                 },
                 success: function(result) {
                     if (result == 'true') {
@@ -282,11 +299,11 @@
                     'name': $("#name").val(),
                     'totalborrow': $("#totalborrow").val(),
                     'validity': $("#validity").val(),
-                    
+                    'valday': $("#valday").val(),
                    
                 },
                 success: function(result) {
-                    if (result.rs == 'true') {
+                    if (result == 'true') {
                         alert("Thêm thành công");
                         LoadCard();
                         $('#AddModal').modal('hide');
