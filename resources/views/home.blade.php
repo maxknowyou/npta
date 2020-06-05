@@ -166,28 +166,98 @@ $(document).ready(function() {
     });
 var ctx = document.getElementById('myChart').getContext('2d');
 var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
+
+function LoadNumber()
+{
+    $.ajax({
+                type: 'GET',
+                url: '/home/getinfo',
+                
+                success: function(result) {
+                    console.log(result);
+                    var res = JSON.parse(result);
+                    console.log(res);
+                    $("#TotalBook").text(res.total);
+                    $("#BorrowBook").text(res.borrow);
+                    $("#LostBook").text(res.lost);
+                    $("#Book").text(res.active);
+                    $("#BorrowBookbar").css("width",res.borrow/res.total*100 +"%");
+                    $("#LostBookbar").css("width",res.lost/res.total*100 + "%");
+                    $("#Bookbar").css("width",res.active/res.total*100 + "%");
+                   
+                    var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9','10','11','12'],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Sách mượn',
+            data: res.borrowyear,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)'
+                
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+               
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)'
+            
+            ],
+            borderWidth: 1
+        },
+        {
+            label: 'Sách mất',
+            data: res.lostyear,
+            backgroundColor: [
+                
+                
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)'
+               
+            ],
+            borderColor: [
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)'
             ],
             borderWidth: 1
         }]
@@ -202,23 +272,6 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-function LoadNumber()
-{
-    $.ajax({
-                type: 'GET',
-                url: '/home/getinfo',
-                
-                success: function(result) {
-                    console.log(result);
-                    var res = JSON.parse(result);
-                    $("#TotalBook").text(res.total);
-                    $("#BorrowBook").text(res.borrow);
-                    $("#LostBook").text(res.lost);
-                    $("#Book").text(res.active);
-                    $("#BorrowBookbar").css("width",res.borrow/res.total*100 +"%");
-                    $("#LostBookbar").css("width",res.lost/res.total*100 + "%");
-                    $("#Bookbar").css("width",res.active/res.total*100 + "%");
-                
                 },
                 error: function(error) {
                     alert("Có lỗi xảy ra, vui lòng thử lại", 1);

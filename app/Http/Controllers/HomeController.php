@@ -38,11 +38,20 @@ class HomeController extends Controller
         $book_borrow = Borrow::where('active', 1)->where('status',1)->sum('amount');
         $book_lost = Lost::where('active', 1)->sum('amount');
         $book_total = $book_active + $book_borrow + $book_lost;
+        $borrow = [];
+        $lost = [];
+        for ($i = 1; $i <= 12; $i++){
+            
+            array_push($borrow,(int)Borrow::whereMonth('from', '=', $i)->sum('amount') );
+            array_push($lost,(int)Lost::whereMonth('time', '=', $i)->sum('amount'));
+        }
         $json_data = array(
             "active"            => $book_active,
             "borrow"    => $book_borrow,
             "lost" =>  $book_lost,
-            "total"            => $book_total
+            "total"            => $book_total,
+            "borrowyear" => $borrow,
+            "lostyear" => $lost
         );
         echo json_encode($json_data);
     }
