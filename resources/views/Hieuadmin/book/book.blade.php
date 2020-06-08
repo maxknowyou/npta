@@ -389,17 +389,17 @@
                     'des':$("#des").val(),
                 },
                 success: function(result) {
-                    if (result.rs == true) {
-                        alert(result.mess);
+                    if (result == 'true') {
+                        alert('Thêm thành công');
                         LoadListBook();
                         $('#AddModal').modal('hide');
                         ResetAddModal();
                     } else {
-                        alert(result.mess);
+                        alert("Thêm thất bại, có lỗi xảy ra");
                     }
                 },
                 error: function(error) {
-                    ShowAlert("Có lỗi xảy ra, vui lòng thử lại", 1);
+                    alert("Có lỗi xảy ra, vui lòng thử lại");
                 }
             });
       })
