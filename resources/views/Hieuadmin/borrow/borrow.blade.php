@@ -125,7 +125,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
-                        <span>{{__('StudentName')}}</span>
+                        <span>{{__('BookName')}}</span>
                     </label>
                     <div class="col-sm-8">
                     <select id="bookedit" class="form-control "   style="width:100%;height:initial">
@@ -234,10 +234,10 @@
         document.getElementById("toedit").valueAsDate = d;
     }
     $("#student").on("change",function(){
-        ChangeEnddayInAddModal($(this).data("valday"));
+        ChangeEnddayInAddModal($(this).children("option:selected").data("valday"));
     })
     $("#studentedit").on("change",function(){
-        ChangeEnddayInEditModal($(this).data("valday"));
+        ChangeEnddayInEditModal($(this).children("option:selected").data("valday"));
     })
     function LoadCategory()
     {
