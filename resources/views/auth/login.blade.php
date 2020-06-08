@@ -39,7 +39,7 @@
                 </header>
                 <div class="auth-content">
                     <p class="text-center">LOGIN TO CONTINUE</p>
-                    <form id="login-form" method="POST" action="{{ route('login') }}">
+                    <form id="login-form" method="POST" action="/Logincustome">
                     <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 

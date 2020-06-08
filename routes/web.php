@@ -82,7 +82,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/Import/import', 'HieuAdmin\ImportController@import');
 
 Route::group(['middleware' => 'CheckRoles'], function() {
-    Route::get('/User','Admin\UserController@getview');
+Route::get('/User','Admin\UserController@getview');
 Route::get('/Account/Getlist','Admin\UserController@getUser');
 Route::post('/Account/PrepareEdit','Admin\UserController@PrepareEdit');
 Route::post('/Account/Edit','Admin\UserController@Edit');
@@ -91,3 +91,5 @@ Route::post('/Account/Add','Admin\UserController@AddNew');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home/getinfo', 'HomeController@HomeGetInfo')->name('home');
 });
+Auth::routes(['register' => false]);
+Route::post('/Logincustome','Admin\LogincustomController@authenticate');
