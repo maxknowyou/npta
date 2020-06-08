@@ -18,7 +18,7 @@
                
                     <h3  style="font-size: 25px;"> {{__('ListUser')}}
                     </h3>
-                    <button id="Addbtn" type="button" class="btn ShowPopup btn-primary col-sm-2 offset-sm-10" data-toggle="modal" data-target="#AddModal">Thêm mới</button>
+                    <button id="Addbtn" type="button" class="btn  btn-primary col-sm-2 offset-sm-10">Thêm mới</button>
                     
         </div>
         <table class="table table-bordered" id="posts">
@@ -106,16 +106,7 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-4 form-control-label">
-                        <span>{{__('Pwd')}}</span>
-                    </label>
-                    <div class="col-sm-8">
-
-                        <input type="password" id="pwdedit" class="form-control" />
-                    </div>
-
-                </div>
+               
                 <div class="form-group row">
                     <label class="col-sm-4 form-control-label">
                         <span>Email</span>
@@ -140,7 +131,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">{{__('Add new')}}</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">{{__('Cancel')}}</button>
                 <button type="button" class="btn btn-primary" id="SaveEdit">{{__('Save')}}</button>
             </div>
         </div><!-- /.modal-content -->
@@ -256,9 +247,9 @@
              success: function (results) {
                  let result = JSON.parse(results);
                  $("#id").val(result.id);
-                 $("#usernametitle").val(result.username);
-                 $("#usernameedit").val(result.username);
-                 $("#pwdedit").val(result.password);
+                 $("#usernametitle").val(result.name);
+                 $("#usernameedit").val(result.name);
+                 
                  $("#emailedit").val(result.email);
                  $("#roleedit").val(result.role);
                 },
@@ -328,6 +319,7 @@
                         alert("Chỉnh sửa thành công");
                         $('#EditModal').modal('hide');
                         ResetEditModal();
+                        LoadUser();
                     } else {
                         alert("Something wrong with edit data for one user, checkout /Account/Edit", 1);
                     }
@@ -351,9 +343,9 @@
                     'role': $("#role").val(),
                 },
                 success: function(result) {
-                    if (result.rs == true) {
+                    if (result == 'true') {
                         alert("Thêm thành công");
-                        LoadCategory();
+                        LoadUser();
                         $('#AddModal').modal('hide');
                         ResetAddModal();
                     } else {
@@ -379,7 +371,7 @@
                         success: function(data) {
                             if (data == 'true') {
                                 alert("Khóa thành công");
-                                LoadCategory();
+                                LoadUser();
                             } else {
                                 alert('Có lỗi đã xảy ra, vui lòng liên hệ admin');
                             }
