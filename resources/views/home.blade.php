@@ -67,7 +67,7 @@
                 <div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
                     <div class="card-header card-header-sm bordered">
                         <div class="header-block">
-                            <h3 class="title" style="font-size: 20px;">1</h3>
+                            <h3 class="title" style="font-size: 20px;">Sách mượn và mất theo tháng</h3>
                         </div>
                     </div>
                     <div class="card-block h-100" id='canvas-container'>
@@ -77,87 +77,7 @@
             </div>
         </div>
     </section>
-    <section class="section">
-        <div class="row sameheight-container">
-            <div class="col-xl-12">
-                <div class="card sameheight-item items" data-exclude="xs,sm,lg">
-                    <div class="card-header bordered">
-                        <div class="card-block">
-                            <h3 class="title" style="font-size: 20px;">{{__('BestSeller')}}</h3>
-                        </div>
-                    </div>
-                    <ul class="item-list striped">
-                        <li class="item item-list-header">
-                            <div class="item-row">
-                                <div class="item-col item-col-th">
-                                    <span></span>
-                                </div>
-                                <div class="item-col item-col-header item-col-title">
-                                    <div>
-                                        <span>{{__('BookTitles')}}</span>
-                                    </div>
-                                </div>
-                                <div class="item-col item-col-header item-col-sales">
-                                    <div>
-                                        <span>{{__('Sales')}}</span>
-                                    </div>
-                                </div>
-                                <div class="item-col item-col-header item-col-extant">
-                                    <div class="no-overflow">
-                                        <span>{{__('Extant')}}</span>
-                                    </div>
-                                </div>
-                                <div class="item-col item-col-header item-col-price">
-                                    <div>
-                                        <span>{{__('Price')}}</span>
-                                    </div>
-                                </div>
-                                <div class="item-col item-col-header item-col-date">
-                                    <div>
-                                        <span>{{__('Published')}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                       
-                        <li class="item">
-                            <div class="item-row">
-                                <div class="item-col item-col-th">
-                                    <div>
-                                        <span> 1 </span>
-                                    </div>
-                                </div>
-                                <div class="item-col item-col-title no-overflow">
-                                    <div>
-                                        <a>
-                                            <h4 class="item-title no-wrap"> 1 </h4>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="item-col item-col-sales">
-                                    <div class="item-heading">1</div>
-                                    <div> 1</div>
-                                </div>
-                                <div class="item-col item-col-extant">
-                                    <div class="item-heading">1</div>
-                                    <div> 1 </div>
-                                </div>
-                                <div class="item-col item-col-price">
-                                    <div class="item-heading">1</div>
-                                    <div> 1 VNĐ </div>
-                                </div>
-                                <div class="item-col item-col-date">
-                                    <div class="item-heading">1</div>
-                                    <div> 1 </div>
-                                </div>
-                            </div>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+   
 </article>
 
 <script>

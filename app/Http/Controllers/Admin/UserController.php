@@ -42,7 +42,7 @@ class UserController extends Controller
         
          $account = Account::where('id', $request->input('id'))->first();
         $account->name = $request->get('username');
-        $account->password = Hash::make($request->get('pwd'));
+        //$account->password = Hash::make($request->get('pwd'));
         $account->email = $request->get('email');
         $account->role = $request->get('role');
         
