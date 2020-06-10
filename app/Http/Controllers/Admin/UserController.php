@@ -58,6 +58,14 @@ class UserController extends Controller
         $mess = true;
         echo json_encode($mess);
     }
+    public function ActiveUser(Request $request)
+    {
+        $account = Account::where('id', $request->input('id'))->first();
+        $account->active = 1;
+        $account->save();
+        $mess = true;
+        echo json_encode($mess);
+    }
     public function AddNew(Request $request)
     {
        $account = new Account([

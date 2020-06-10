@@ -88,6 +88,7 @@ Route::post('/Account/PrepareEdit','Admin\UserController@PrepareEdit');
 Route::post('/Account/Edit','Admin\UserController@Edit');
 Route::post('/Account/Delete','Admin\UserController@Delete');
 Route::post('/Account/Add','Admin\UserController@AddNew');
+Route::post('/Account/ActiveUser','Admin\UserController@ActiveUser');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home/getinfo', 'HomeController@HomeGetInfo')->name('home');
 });

@@ -228,7 +228,11 @@
                                 "<a title='Xóa' class='btn btn-sm btn-primary' onclick='Delete(" +
                                 data +
                                 ")'>{{__('Del')}}</a>";
-                            return edit+ " " + del ;
+                                var active =
+                                "<a title='Xóa' class='btn btn-sm btn-primary' onclick='ActiveUser(" +
+                                data +
+                                ")'>Mở</a>";
+                            return edit+ " " + del + " " + active;
                         },
                     }
                 ],
@@ -382,6 +386,31 @@
                     });
 }
     }
+    function ActiveUser(id) {
+
+var r = confirm("Bạn có muốn mở khóa tài khoản này?");
+    if (r == true) {
+            $.ajax({
+                type: 'POST',
+                url: '/Account/ActiveUser',
+                data: {
+                    _token: "{{csrf_token()}}",
+                    'id': id,
+                },
+                success: function(data) {
+                    if (data == 'true') {
+                        alert("Mở khóa thành công");
+                        LoadUser();
+                    } else {
+                        alert('Có lỗi đã xảy ra, vui lòng liên hệ admin');
+                    }
+                },
+                error: function (error) {
+                    alert('Có lỗi đã xảy ra, vui lòng liên hệ admin');
+                }
+            });
+}
+}
 </script>
 
 @endsection
