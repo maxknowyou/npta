@@ -1,0 +1,51 @@
+{
+    "BookLibaryName": "Thư viện tổng hợp Liba",
+    "Booklibary": "Thư viện",
+    "Book": "Sách",
+    "Borrow": "Mượn sách",
+    "Student": "Sinh viên",
+    "Lost": "Mất sách",
+    "User": "Tài khoản",
+    "Genre": "Thể loại",
+    "Card": "Thẻ thư viện",
+
+    "Logout" : "Đăng xuất",
+    "No.":"Stt",
+    "Add new":"Thêm mới",
+    "Delete":"Xóa",
+    "Edit":"Sửa",
+    "Option":"Tùy chọn",
+    "Cancel":"Thoát",
+    "Save":"Lưu",
+    "BeActive":"Đang hoạt động",
+    "Deactive":"Ngưng hoạt dộng",
+
+    "ListUser": "Danh sách tài khoản",
+    "UserName": "Tên",
+    "Email": "Email",
+    "Active": "Hoạt động",
+    "AddnewUser": "Thêm tài khoản",
+    "Pwd": "Mật khẩu",
+    "Type": "Loại",
+    "Librarian": "Thủ thư",
+    "Admin": "Quản lý",
+
+    "BorrowList":"Danh sách mượn",
+    "StudentName":"Tên sv",
+    "BookName":"Tên sách",
+    "Fromday":"Từ ngày",
+    "Today":"Đến ngày",
+    "ReturnDay":"Ngày trả",
+    "BorrowBook":"Thêm Chi tiết sách mượn",
+    "Return":"Trả",
+    "LostBook":"Mất",
+    "Borrowing":"Đang mượn",
+    "Returned":"Đã trả",
+    "Losted":"Làm mất",
+    
+    "ListGenre": "Danh sách thể loại",
+    "GenreName": "Tên",
+    "AddnewGenre": "Thêm thể loại"
+    
+
+}

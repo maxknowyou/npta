@@ -1,0 +1,57 @@
+{
+    "BookLibaryName": "Liba",
+    "Booklibary": "Libary",
+    "Book": "Book",
+    "Borrow": "Borrow",
+    "Student": "Student",
+    "Lost": "Lost",
+    "User": "User",
+    "Genre": "Genre",
+    "Card": "Card",
+    "Logout" : "Logout",
+    
+
+    "No.":"No.",
+    "Add new":"Add new",
+    "Delete":"Del",
+    "Edit":"Edit",
+    "Option":"Option",
+    "Cancel":"Cancel",
+    "Save":"Save",
+    "BeActive":"Active",
+    "Deactive":"Deactive",
+    "Active": "Active",
+    "Type": "Type",
+    "Status": "Status",
+
+    "BorrowList":"Borrow List",
+    "StudentName":"Student Name",
+    "BookName":"Book",
+    "Fromday":"From(day)",
+    "Today":"To(day)",
+    "ReturnDay":"Return day",
+    "BorrowBook":"Add new Borrow Detail",
+    "Return":"Return",
+    "LostBook":"Lost",
+    "Borrowing":"Borrowing",
+    "Returned":"Returned",
+    "Losted":"Losted",
+
+    "CardName":"Name",
+    "TotalBorrow":"Total Borrow",
+    "Returned":"Returned",
+    "Losted":"Losted",
+
+
+    "ListUser": "List User",
+    "UserName": "Name",
+    "Email": "Email",
+    "AddnewUser": "Add new user",
+    "Pwd": "Password",
+    "Librarian": "Librarian",
+    "Admin": "Admin",
+
+    "ListGenre": "List Genre",
+    "GenreName": "Name",
+    "AddnewGenre": "Thêm thể loại"
+}
